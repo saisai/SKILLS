@@ -155,7 +155,7 @@ def main() -> int:
     dest = (
         args.out.expanduser()
         if args.out
-        else args.out_dir.expanduser() / f"{date.today().isoformat()}-{slugify(title)}.md"
+        else args.out_dir.expanduser() / f"{date.today().isoformat()}.md"
     )
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(render(title, source, thoughts, commands, other), encoding="utf-8")

@@ -13,7 +13,7 @@ Write this chat's **assistant thoughts** and **commands used** to the working di
 ## Default output
 
 - Directory: `<cwd>/cursor/thoughts/`
-- File: `YYYY-MM-DD-<short-title>.md`
+- File: `YYYY-MM-DD.md`
 - Override the path if the user names one
 
 Do not commit the file unless the user asks.

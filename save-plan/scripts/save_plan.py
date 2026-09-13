@@ -47,7 +47,7 @@ def newest_plan(roots: list[Path]) -> Path | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Save a Cursor plan to markdown")
     parser.add_argument("--source", type=Path)
-    parser.add_argument("--out-dir", type=Path, default=Path.cwd() / "plans")
+    parser.add_argument("--out-dir", type=Path, default=Path.cwd() / "cursor" / "plans")
     parser.add_argument("--out", type=Path)
     parser.add_argument("--title")
     parser.add_argument("--stdin", action="store_true")
@@ -79,7 +79,7 @@ def main() -> int:
     dest = (
         args.out.expanduser()
         if args.out
-        else args.out_dir.expanduser() / f"{date.today().isoformat()}-{slugify(title)}.md"
+        else args.out_dir.expanduser() / f"{date.today().isoformat()}.md"
     )
     dest.parent.mkdir(parents=True, exist_ok=True)
     if not body.lstrip().startswith("#"):

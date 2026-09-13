@@ -140,7 +140,7 @@ def main() -> int:
         args.out.expanduser()
         if args.out
         else args.out_dir.expanduser()
-        / f"{date.today().isoformat()}-{slugify(title)}.md"
+        / f"{date.today().isoformat()}.md"
     )
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(render(messages, title, source, args.include_tools), encoding="utf-8")

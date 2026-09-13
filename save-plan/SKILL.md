@@ -12,8 +12,8 @@ Write the **current Cursor Plan** to the working directory. Do not invent a plan
 
 ## Default output
 
-- Directory: `<cwd>/plans/`
-- File: `YYYY-MM-DD-<short-title>.md`
+- Directory: `<cwd>/cursor/plans/`
+- File: `YYYY-MM-DD.md`
 - Override the path if the user names one
 
 Do not commit the file unless the user asks.
@@ -39,7 +39,7 @@ Do not commit the file unless the user asks.
    ```bash
    python3 ~/.cursor/skills/save-plan/scripts/save_plan.py \
      --source /path/to/plan.md \
-     --out-dir "$PWD/plans"
+     --out-dir "$PWD/cursor/plans"
    ```
 
    Or pipe the plan text:
@@ -47,7 +47,7 @@ Do not commit the file unless the user asks.
    ```bash
    python3 ~/.cursor/skills/save-plan/scripts/save_plan.py \
      --title "My plan" \
-     --out-dir "$PWD/plans" \
+     --out-dir "$PWD/cursor/plans" \
      --stdin
    ```
 
