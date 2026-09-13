@@ -1,0 +1,1 @@
+## Add this skills folder into your  ~/.cursor/skills/
