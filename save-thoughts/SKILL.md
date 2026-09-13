@@ -12,7 +12,7 @@ Write this chat's **assistant thoughts** and **commands used** to the working di
 
 ## Default output
 
-- Directory: `<cwd>/thoughts/`
+- Directory: `<cwd>/cursor/thoughts/`
 - File: `YYYY-MM-DD-<short-title>.md`
 - Override the path if the user names one
 
@@ -33,7 +33,7 @@ Do not commit the file unless the user asks.
    ```bash
    python3 ~/.cursor/skills/save-thoughts/scripts/save_thoughts.py \
      --transcripts-dir "$HOME/.cursor/projects/<workspace-slug>/agent-transcripts" \
-     --out-dir "$PWD/thoughts"
+     --out-dir "$PWD/cursor/thoughts"
    ```
 
    Optional:

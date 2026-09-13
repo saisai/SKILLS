@@ -131,7 +131,7 @@ def render(title: str, source: Path, thoughts: list[str], commands: list[dict], 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Save Cursor thoughts and commands")
     parser.add_argument("--transcripts-dir", type=Path, required=True)
-    parser.add_argument("--out-dir", type=Path, default=Path.cwd() / "thoughts")
+    parser.add_argument("--out-dir", type=Path, default=Path.cwd() / "cursor" / "thoughts")
     parser.add_argument("--out", type=Path)
     parser.add_argument("--title")
     parser.add_argument("--include-other-tools", action="store_true")
