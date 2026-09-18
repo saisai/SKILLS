@@ -7,7 +7,7 @@ import argparse
 import json
 import re
 import sys
-from datetime import date
+from datetime import datetime
 from pathlib import Path
 
 SECRET_RE = re.compile(
@@ -93,7 +93,7 @@ def render(title: str, source: Path, thoughts: list[str], commands: list[dict], 
     parts = [
         f"# {title}",
         "",
-        f"- Saved: {date.today().isoformat()}",
+        f"- Saved: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
         f"- Source: `{source}`",
         f"- Thoughts: {len(thoughts)}",
         f"- Commands: {len(commands)}",
@@ -152,10 +152,11 @@ def main() -> int:
         return 2
 
     title = args.title or first_user_title(rows)
+    stamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     dest = (
         args.out.expanduser()
         if args.out
-        else args.out_dir.expanduser() / f"{date.today().isoformat()}.md"
+        else args.out_dir.expanduser() / f"{stamp}.md"
     )
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(render(title, source, thoughts, commands, other), encoding="utf-8")
