@@ -13,7 +13,7 @@ Export the active Cursor chat to markdown so it survives session loss.
 ## Default output
 
 - Directory: `<cwd>/cursor/conversation/`
-- File: `YYYY-MM-DD.md`
+- File: `YYYY-MM-DD-HH-MM-SS.md` (one file per save; does not overwrite earlier saves that day)
 - Override the directory or filename if the user names one
 
 Do not commit the file unless the user asks.
