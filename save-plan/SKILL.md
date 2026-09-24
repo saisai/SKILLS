@@ -1,66 +1,74 @@
 ---
 name: save-plan
 description: >-
-  Saves the current Cursor Plan (Plan mode document) as markdown in the
-  working directory. Use when the user asks to save, export, or archive a
-  plan, Plan mode doc, or implementation plan.
+  Saves the current Cursor Plan (Plan mode document) as markdown in the working
+  directory. Use when the user asks to save, export, or archive a plan, Plan
+  mode doc, or implementation plan.
 ---
 
 # Save Plan
 
-Write the **current Cursor Plan** to the working directory. Do not invent a plan.
+Export the active Cursor Plan to a durable markdown file in the project.
 
 ## Default output
 
-- Directory: `<cwd>/cursor/plans/`
-- File: `YYYY-MM-DD.md`
-- Override the path if the user names one
+- Directory: `<cwd>/plans/`
+- File: `YYYY-MM-DD-slug.md` (matches existing project plan archives)
+- If that path already exists, use `YYYY-MM-DD-slug-HHMMSS.md`
+- Override the directory or filename if the user names one
 
 Do not commit the file unless the user asks.
 
 ## Workflow
 
-1. Find the plan, in this order:
+1. Prefer the newest `*.plan.md` under:
 
-   1. A plan the user attached, opened, or pasted in this turn
-   2. The Plan mode document already in this chat
-   3. The newest file under any of:
+   ```text
+   ~/.cursor/plans/
+   ```
 
-      ```text
-      .cursor/plans/
-      ~/.cursor/projects/<workspace-slug>/plans/
-      ```
+   Also check `<cwd>/.cursor/plans/` if it exists. If the user names a plan
+   title or path, use that file instead.
 
-      `<workspace-slug>` is the workspace path with `/` replaced by `-`.
-      Also accept `*.plan.md` in the workspace if that is clearly the active plan.
-
-2. Save it:
+2. Run the exporter:
 
    ```bash
    python3 ~/.cursor/skills/save-plan/scripts/save_plan.py \
-     --source /path/to/plan.md \
-     --out-dir "$PWD/cursor/plans"
+     --plans-dir "$HOME/.cursor/plans" \
+     --out-dir "$PWD/plans"
    ```
 
-   Or pipe the plan text:
+   Optional flags:
 
-   ```bash
-   python3 ~/.cursor/skills/save-plan/scripts/save_plan.py \
-     --title "My plan" \
-     --out-dir "$PWD/cursor/plans" \
-     --stdin
-   ```
+   - `--title "My title"` (forces heading / slug)
+   - `--source /path/to/file.plan.md`
+   - `--out /path/to/file.md`
+   - `--also-dir "$PWD/.cursor/plans"` (extra search root)
 
-   Optional: `--out /path/to/file.md`
+3. Tell the user the saved path and a one-line summary (plan name + todo count).
 
-3. Tell the user the saved path and the plan title.
+## Output shape
 
-## Redaction
+Match the project's existing plan archives:
 
-The script redacts common secret patterns. Skim the saved file for credentials
-before reporting success.
+```markdown
+# Plan — <Title>
+
+Saved from Cursor plan on YYYY-MM-DD.
+
+## Overview
+
+<overview from frontmatter, if present>
+
+## Todos
+
+- [x] completed item
+- [ ] pending item
+
+## <rest of plan body without Cursor frontmatter>
+```
 
 ## If no plan exists
 
-Say there is no Cursor Plan in this session and ask the user to open Plan mode
-or point at a plan file. Do not write a reconstructed or guessed plan.
+Say no Cursor plan file was found and ask the user to open or create a plan
+in Plan mode, then retry. Do not invent plan content.
