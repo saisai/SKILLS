@@ -12,8 +12,8 @@ Export the active Cursor Plan to a durable markdown file in the project.
 
 ## Default output
 
-- Directory: `<cwd>/plans/`
-- File: `YYYY-MM-DD-slug.md` (matches existing project plan archives)
+- Directory: `<cwd>/cursor/plans/`
+- File: `YYYY-MM-DD-slug.md`
 - If that path already exists, use `YYYY-MM-DD-slug-HHMMSS.md`
 - Override the directory or filename if the user names one
 
@@ -35,7 +35,7 @@ Do not commit the file unless the user asks.
    ```bash
    python3 ~/.cursor/skills/save-plan/scripts/save_plan.py \
      --plans-dir "$HOME/.cursor/plans" \
-     --out-dir "$PWD/plans"
+     --out-dir "$PWD/cursor/plans"
    ```
 
    Optional flags:
@@ -48,8 +48,6 @@ Do not commit the file unless the user asks.
 3. Tell the user the saved path and a one-line summary (plan name + todo count).
 
 ## Output shape
-
-Match the project's existing plan archives:
 
 ```markdown
 # Plan — <Title>

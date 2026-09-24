@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export a Cursor Plan (.plan.md) into the project's plans/ archive format."""
+"""Export a Cursor Plan (.plan.md) into cursor/plans/ archive format."""
 
 from __future__ import annotations
 
@@ -152,7 +152,11 @@ def main() -> int:
     )
     parser.add_argument("--also-dir", type=Path, action="append", default=[])
     parser.add_argument("--source", type=Path)
-    parser.add_argument("--out-dir", type=Path, default=Path.cwd() / "plans")
+    parser.add_argument(
+        "--out-dir",
+        type=Path,
+        default=Path.cwd() / "cursor" / "plans",
+    )
     parser.add_argument("--out", type=Path)
     parser.add_argument("--title")
     args = parser.parse_args()
