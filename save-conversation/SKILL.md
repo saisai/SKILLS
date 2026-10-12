@@ -43,6 +43,10 @@ Do not commit the file unless the user asks.
    - `--out /path/to/file.md`
    - `--include-tools` (include tool-call names; off by default)
 
+   Omit a turn when it would render as an empty heading. Assistant turns that
+   only called tools have no prose, so drop those `## Assistant` sections unless
+   `--include-tools` is set.
+
 3. Tell the user the saved path and a one-line summary of what was written.
 
 ## Redaction

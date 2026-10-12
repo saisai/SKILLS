@@ -99,13 +99,17 @@ def render(messages: list[tuple[str, str, list[str]]], title: str, source: Path,
         "",
     ]
     for role, text, tools in messages:
+        visible_tools = bool(include_tools and tools)
+        # Tool-only turns have no prose. Omit them unless --include-tools is set.
+        if not text.strip() and not visible_tools:
+            continue
         heading = "User" if role == "user" else "Assistant" if role == "assistant" else role.title()
         parts.append(f"## {heading}")
         parts.append("")
-        if text:
-            parts.append(text)
+        if text.strip():
+            parts.append(text.strip())
             parts.append("")
-        if include_tools and tools:
+        if visible_tools:
             parts.append("Tools: " + ", ".join(tools))
             parts.append("")
     return "\n".join(parts).rstrip() + "\n"
