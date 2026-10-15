@@ -52,6 +52,20 @@ Signals are hints. The current tree wins when they disagree.
 
 **Document:** one directory (or module) is one process; how compile works (`go build ./cmd/<name>`, `npm run build`, `mvn package`, `dotnet publish`, `cargo build`); a table of output → source → role; a flowchart of launchers versus servers; which command to run for each goal; flags that are real (`-h` output or the flag definitions). Note when `go run` / `npm run dev` does not write the release binary.
 
+## Commands
+
+**Signals:** `Makefile`, `justfile`, `Taskfile.yml`, `package.json` `scripts`, `scripts/`, workflow `run` keys.
+
+**Read first:** the Makefile or task runner, each script it calls, package scripts, CI steps, and compose or Dockerfile commands that the docs already mention.
+
+**Document:** one `docs/commands.md` page. A table of goal → command → working directory. A `flowchart LR` of the launcher to the processes it starts. A `flowchart TD` of the main script’s real order, including branches that exist in the script (port already open, missing binary, stop only what this run started). Skip a box the tree does not contain.
+
+**Depth:** quote the underlying command (`powershell -File`, `protoc` flags, `pg_dump` flags). Spell out side effects: files written, processes not stopped, data left on disk, env vars overridden. Point HTTP, deploy, and test behavior at those pages instead of repeating them. Explain a command in detail when the name is a wrapper. A one-line mapping is enough when the command is the tool itself.
+
+**Do not:** invent targets, claim a command was executed, or paste lockfiles.
+
+**How to change:** put behavior in the script; keep a task-runner target as a one-line wrapper; keep paired scripts (`.ps1` and `.sh`) on the same flags.
+
 ## Internal or library packages
 
 **Signals:** `internal/`, `src/lib`, `pkg/` that apps import, a core module with no `main`, Python packages imported by apps, a class library project.
@@ -94,4 +108,4 @@ When you write more than one topic page, add `docs/architecture.md`:
 - a layout tree of the directories you documented
 - runtime modes (local, compose, cluster) that exist
 
-Link that index from the README.
+Link that index from the README. When a commands page was written, link it from `docs/architecture.md` and the README list.
