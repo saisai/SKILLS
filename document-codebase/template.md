@@ -59,5 +59,7 @@ sequenceDiagram
 | What happens on one request or job? | `sequenceDiagram` |
 | What starts first, or which command? | `flowchart TD` |
 | What nests inside a message or schema? | `flowchart TD` with the parent type as the root |
+| Which rows reference which rows? | Mermaid `erDiagram` |
+| Which status follows which status? | `stateDiagram-v2` |
 
 Prefer one diagram that matches the code over three that repeat it.

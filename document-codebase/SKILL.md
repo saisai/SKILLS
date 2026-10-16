@@ -3,11 +3,13 @@ name: document-codebase
 description: >-
   Writes in-repo docs that explain how a subsystem works, with Mermaid
   workflows and diagrams, from the current code. Use when the user asks to
-  explain and document a framework, OpenAPI or other API contract, protobuf
-  or gRPC, cloud or Kubernetes deploy, cmd or entrypoints, commands (Makefile
-  targets, npm or other package scripts, scripts/, CI run steps), internal
-  packages, migrations, a frontend, or end-to-end tests, or asks for
-  architecture docs with a workflow or diagram in any project.
+  explain and document a framework, OpenAPI or other API contract, GraphQL,
+  protobuf or gRPC, cloud or Kubernetes deploy, cmd or entrypoints, commands
+  (Makefile targets, npm or other package scripts, scripts/, CI run steps),
+  internal packages, migrations, a database design diagram (ERD or UML),
+  system design, high-level design (HLD), low-level design (LLD), a frontend,
+  or end-to-end tests, or asks for architecture docs with a workflow or
+  diagram in any project.
 ---
 
 # Document a codebase
@@ -18,7 +20,7 @@ Works for any language or layout. Topic playbooks are in [reference.md](referenc
 
 ## Workflow
 
-1. Inventory the repo: entrypoints, command sources (`Makefile`, `package.json` / `pyproject.toml` / `*.csproj` scripts, `scripts/`, Dockerfile `ENTRYPOINT` / `CMD`, CI `run` steps), HTTP or RPC adapters, contracts, schema, UI, deploy, and tests. Read the README and any existing `docs/` before writing.
+1. Inventory the repo: entrypoints, command sources (`Makefile`, `package.json` / `pyproject.toml` / `*.csproj` scripts, `scripts/`, Dockerfile `ENTRYPOINT` / `CMD`, CI `run` steps), HTTP or RPC adapters, contracts (OpenAPI, GraphQL schema, proto), schema and migrations, UI, deploy, and tests. Read the README and any existing `docs/` before writing.
 2. Match each requested topic to a playbook. If the topic is not in this repo, say so in the doc and document the closest real path. Do not invent a suite, manifest, or binary.
 3. Read the playbook's "read first" files, then the code they point at. Versions and flags come from `go.mod`, `package.json`, `*.csproj`, `pyproject.toml`, Dockerfiles, or the Makefile — whichever this repo uses.
 4. Write one page per topic under `docs/`. If that page already exists, update it.
